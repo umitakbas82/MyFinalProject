@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,15 +31,17 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
-
-            Product productToDelete = null;
-            foreach (var p in _products)
-            {
-                if (product.ProductId == p.ProductId)
-                {
-                    productToDelete = p;
-                }
-            }
+            //LINQ METODU (gonserılen nesnenin ID'sine sahip ID'yi bulur)
+            Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            
+            //
+            //foreach (var p in _products)
+            //{
+            //    if (product.ProductId == p.ProductId)
+            //    {
+            //        productToDelete = p;
+            //    }
+            // }
             
             
             _products.Remove(product);
@@ -49,7 +52,34 @@ namespace DataAccess.Concrete.InMemory
             return _products;
         }
 
+        public List<Product> GetByCategory(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Product product)
+        {
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            productToUpdate.ProductName = product.ProductName;
+            productToUpdate.CategoryId = product.CategoryId;
+            productToUpdate.UnitPrice = product.UnitPrice;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
+            productToUpdate.ProductId = product.ProductId;
+        }
+
+
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId).ToList();
+
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product Get(Expression<Func<Product, bool>> filter)
         {
             throw new NotImplementedException();
         }
