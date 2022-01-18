@@ -30,8 +30,8 @@ namespace Business.Concrete
 
         public List<Product> GetAll()
         {
-            //İs Kodları 
-            //Yetkisi Varmı?
+            //Business Codes 
+            //does have the authority
             return _productDal.GetAll();
         }
 
