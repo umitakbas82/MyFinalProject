@@ -25,7 +25,7 @@ namespace Business.Concrete
         {
             //business codes
             _productDal.Add(product);
-            return new Result(true,"Product Added");
+            return new SuccessResult();
         }
 
         public List<Product> GetAll()
