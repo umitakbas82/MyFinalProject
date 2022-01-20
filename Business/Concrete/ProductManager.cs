@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constans;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -20,12 +21,16 @@ namespace Business.Concrete
         {
             _productDal = iProductDal;
         }
-
+        //business codes
         public IResult Add(Product product)
         {
-            //business codes
+            if (product.ProductName.Length<2)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+            
             _productDal.Add(product);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ProductAdeed);
         }
 
         public List<Product> GetAll()
