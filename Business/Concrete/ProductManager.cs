@@ -37,7 +37,7 @@ namespace Business.Concrete
         {
             //Business Codes 
             //does have the authority
-            return (IDataResult<List<Product>>)_productDal.GetAll();
+            return new DataResult<List<Product>>(_productDal.GetAll(),true,"Product Listed");
         }
 
         public IDataResult <List<Product>> GetAllByCategoryId(int id)
