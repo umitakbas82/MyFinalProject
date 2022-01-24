@@ -21,7 +21,7 @@ namespace Core.Utilities.Results
         {
 
         }
-        public SuccessDataResult():base(default,true)
+        public SuccessDataResult(List<global::Entities.DTOs.ProductDetailDto> productDetailDtos) :base(default,true)
         {
 
         }

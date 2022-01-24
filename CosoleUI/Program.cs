@@ -31,7 +31,9 @@ namespace CosoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetProductDetails())
+            var result = productManager.GetProductDetails()
+
+            foreach (var product in )
             {
                 Console.WriteLine(product.ProductName+  "/" + product.CategoryName);
             }
